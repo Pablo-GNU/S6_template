@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  php-fpm:
+    build: ./docker/phpfpm
+    volumes:
+      - .:/home/data/data
+
+  nginx:
+    build: ./docker/nginx
+    volumes:
+      - .:/home/data/data
+    ports:
+      - "8080:80"
+    depends_on:
+      - php-fpm
