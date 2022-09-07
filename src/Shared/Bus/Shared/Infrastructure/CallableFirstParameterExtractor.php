@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Code\Shared\Bus\Shared\Infrastructure;
 
+use Code\Shared\Bus\Event\Domain\DomainEventSubscriber;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 
 use function Lambdish\Phunctional\map;
+use function Lambdish\Phunctional\reduce;
 use function Lambdish\Phunctional\reindex;
 
 final class CallableFirstParameterExtractor
@@ -18,10 +20,28 @@ final class CallableFirstParameterExtractor
         return map(self::unflatten(), reindex(self::classExtractor(new self()), $callables));
     }
 
+    public static function forPipedCallables(iterable $callables): array
+    {
+        return reduce(self::pipedCallablesReducer(), $callables, []);
+    }
+
     private static function classExtractor(CallableFirstParameterExtractor $parameterExtractor): callable
     {
         return static function (callable $handler) use ($parameterExtractor): ?string {
             return $parameterExtractor->extract($handler);
+        };
+    }
+
+    private static function pipedCallablesReducer(): callable
+    {
+        return static function ($subscribers, DomainEventSubscriber $subscriber): array {
+            $subscribedEvents = $subscriber::subscribedTo();
+
+            foreach ($subscribedEvents as $subscribedEvent) {
+                $subscribers[$subscribedEvent][] = $subscriber;
+            }
+
+            return $subscribers;
         };
     }
 

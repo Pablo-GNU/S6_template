@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Code\Shared\ValueObject;
-
-use DomainException;
+namespace Code\Shared\ValueObject\Domain;
 
 abstract class StringValueObject
 {

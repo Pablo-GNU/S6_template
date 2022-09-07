@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Code\Shared\ValueObject;
+namespace Code\Shared\ValueObject\Domain;
 
 use InvalidArgumentException;
 
