@@ -13,6 +13,9 @@ services:
 
     # Configure
     _instanceof:
+        Code\Shared\Bus\Event\Domain\DomainEventSubscriber:
+            tags: [ 'code.domain_event_subscriber' ]
+
         Code\Shared\Bus\Command\Domain\CommandHandler:
             tags: [ 'code.command_handler' ]
 
@@ -39,6 +42,10 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    Code\Shared\Bus\Event\Infrastructure\InMemorySymfonyEventBus:
+        arguments: [!tagged code.domain_event_subscriber]
+        lazy: true
 
     # Command/Query Handlers
     Code\Shared\Bus\Command\Infrastructure\InMemorySymfonyCommandBus:
