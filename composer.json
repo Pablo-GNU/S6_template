@@ -70,10 +70,10 @@
             "@auto-scripts"
         ],
         "changelog": "conventional-changelog",
-        "release": "conventional-changelog --commit",
-        "release:patch": "conventional-changelog --patch --commit",
-        "release:minor": "conventional-changelog --minor --commit",
-        "release:major": "conventional-changelog --major --commit"
+        "release": "conventional-changelog --no-tag",
+        "release:patch": "conventional-changelog --patch --no-tag",
+        "release:minor": "conventional-changelog --minor --no-tag",
+        "release:major": "conventional-changelog --major --no-tag"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -89,5 +89,5 @@
         "public-dir": "app/public",
         "var-dir": "app/var"
     },
-    "version": "1.3.0"
+    "version": "1.4.0"
 }
