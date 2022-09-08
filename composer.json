@@ -17,6 +17,10 @@
         "ext-json": "*",
         "ext-http": "*"
     },
+    "require-dev": {
+        "marcocesarato/php-conventional-changelog": "^1.15",
+        "rector/rector": "^0.14.2"
+    },
     "config": {
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
@@ -30,7 +34,9 @@
     "autoload": {
         "psr-4": {
             "Code\\App\\": "app/src/",
-            "Code\\": ["src"]
+            "Code\\": [
+                "src"
+            ]
         }
     },
     "replace": {
@@ -51,7 +57,12 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -67,7 +78,5 @@
         "public-dir": "app/public",
         "var-dir": "app/var"
     },
-    "require-dev": {
-        "rector/rector": "^0.14.2"
-    }
+    "version": "1.2.0"
 }
