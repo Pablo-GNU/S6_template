@@ -36,10 +36,7 @@ abstract class Collection  implements Countable, IteratorAggregate
         return empty($this->count());
     }
 
-    /**
-     * @param mixed $item
-     */
-    public function addItem($item): void
+    public function addItem(mixed $item): void
     {
         Assert::instanceOf(static::type(), $item);
         $this->items[] = $item;

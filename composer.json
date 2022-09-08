@@ -66,5 +66,8 @@
         "src-dir": "app/src",
         "public-dir": "app/public",
         "var-dir": "app/var"
+    },
+    "require-dev": {
+        "rector/rector": "^0.14.2"
     }
 }
