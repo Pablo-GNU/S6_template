@@ -11,6 +11,11 @@ final class TestController extends BaseController
 {
     public function __invoke(Request $request): Response
     {
-        return new Response($request->getUri(), Response::HTTP_OK);
+        return $this->render(
+            'test/test.html.twig',
+            [
+                'uri' => $request->getUri()
+            ]
+        );
     }
 }
