@@ -4,3 +4,4 @@ app/var/log/*
 !app/var/cache/.gitkeep
 !app/var/log/.gitkeep
 .idea/*
+docker-compose.override.yml
