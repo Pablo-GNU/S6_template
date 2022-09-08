@@ -18,11 +18,12 @@ final class Utils
     public static function endsWith(string $needle, string $haystack): bool
     {
         $length = \strlen($needle);
-        if ($length === 0) {
+
+        if (0 === $length) {
             return true;
         }
 
-        return (\substr($haystack, -$length) === $needle);
+        return \substr($haystack, -$length) === $needle;
     }
 
     public static function dateToString(DateTimeInterface $date): string
@@ -50,8 +51,8 @@ final class Utils
     {
         $data = \json_decode($json, true);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new RuntimeException('Unable to parse response body into JSON: ' . json_last_error());
+        if (JSON_ERROR_NONE !== \json_last_error()) {
+            throw new RuntimeException('Unable to parse response body into JSON: ' . \json_last_error());
         }
 
         return $data;
@@ -59,7 +60,7 @@ final class Utils
 
     public static function toSnakeCase(string $text): string
     {
-        return \ctype_lower($text) ? $text : \strtolower((string) \preg_replace('/([^A-Z\s])([A-Z])/', "$1_$2", $text));
+        return \ctype_lower($text) ? $text : \strtolower((string) \preg_replace('/([^A-Z\s])([A-Z])/', '$1_$2', $text));
     }
 
     public static function toCamelCase(string $text): string
@@ -70,6 +71,7 @@ final class Utils
     public static function dot(array $array, string $prepend = ''): array
     {
         $results = [];
+
         foreach ($array as $key => $value) {
             if (\is_array($value) && !empty($value)) {
                 $results = \array_merge($results, Utils::dot($value, $prepend . $key . '.'));

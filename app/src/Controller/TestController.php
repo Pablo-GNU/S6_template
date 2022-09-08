@@ -11,6 +11,6 @@ final class TestController extends BaseController
 {
     public function __invoke(Request $request): Response
     {
-        return new Response("test", Response::HTTP_OK);
+        return new Response($request->getUri(), Response::HTTP_OK);
     }
 }

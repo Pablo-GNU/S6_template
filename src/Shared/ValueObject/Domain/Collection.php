@@ -8,7 +8,7 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 
-abstract class Collection  implements Countable, IteratorAggregate
+abstract class Collection implements Countable, IteratorAggregate
 {
     private $items;
 
