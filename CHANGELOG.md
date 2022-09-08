@@ -4,6 +4,16 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [1.5.0](https://github.com/Pablo-GNU/S6_template/compare/v1.4.0...v1.5.0) (2022-09-08)
+
+### Features
+
+* Add DBAL support with Doctrine ([5b23ac](https://github.com/Pablo-GNU/S6_template/commit/5b23acfe9446b7c6a0584ffc532f1f8ddd6502ed))
+* Add WebPack, JQuery and Bootstrap ([278deb](https://github.com/Pablo-GNU/S6_template/commit/278deb66e35d183d6129c7afec757b996bfbef99))
+
+
+---
+
 ## [1.4.0](https://github.com/Pablo-GNU/S6_template/compare/v1.3.0...v1.4.0) (2022-09-08)
 
 ### Features

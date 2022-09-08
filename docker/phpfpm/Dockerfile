@@ -35,11 +35,19 @@ RUN docker-php-ext-enable opcache imagick apcu
 RUN pecl install raphf && docker-php-ext-enable raphf
 RUN pecl install pecl_http && docker-php-ext-enable http
 
-RUN apt-get clean && apt-get autoremove -y
-RUN rm -rf /var/lib/apt/lists/*
-
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN chmod +x /usr/local/bin/composer
+
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash
+RUN apt-get install nodejs
+
+RUN apt-get --no-install-recommends install -y gnupg
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y yarn
+
+RUN apt-get clean && apt-get autoremove -y
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN usermod -u 1000 www-data -s /bin/bash -G sudo -d /home/data/
 RUN groupmod -g 1000 www-data

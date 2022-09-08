@@ -20,7 +20,10 @@
         "symfony/framework-bundle": "6.1.*",
         "symfony/messenger": "6.1.*",
         "symfony/proxy-manager-bridge": "6.1.*",
-        "symfony/yaml": "6.1.*"
+        "symfony/twig-bundle": "6.1.*",
+        "symfony/webpack-encore-bundle": "^1.15",
+        "symfony/yaml": "6.1.*",
+        "twig/twig": "^2.0"
     },
     "require-dev": {
         "captainhook/captainhook": "^5.10",
@@ -89,5 +92,5 @@
         "public-dir": "app/public",
         "var-dir": "app/var"
     },
-    "version": "1.4.0"
+    "version": "1.5.0"
 }
