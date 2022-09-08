@@ -13,6 +13,6 @@ final class CommandNotRegisteredError extends RuntimeException
     {
         $commandClass = $query::class;
 
-        parent::__construct("The command " . $commandClass . " hasn't a command handler associated");
+        parent::__construct('The command ' . $commandClass . " hasn't a command handler associated");
     }
 }

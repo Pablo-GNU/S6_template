@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Code\Shared\Bus\Query\Infrastructure;
 
+use Code\Shared\Bus\Query\Domain\Exceptions\QueryNotRegisteredError;
 use Code\Shared\Bus\Query\Domain\Query;
 use Code\Shared\Bus\Query\Domain\QueryBus;
 use Code\Shared\Bus\Query\Domain\Response;
-use Code\Shared\Bus\Query\Domain\Exceptions\QueryNotRegisteredError;
 use Code\Shared\Bus\Shared\Infrastructure\CallableFirstParameterExtractor;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;

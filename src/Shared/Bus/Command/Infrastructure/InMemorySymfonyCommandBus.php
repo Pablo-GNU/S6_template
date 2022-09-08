@@ -7,10 +7,11 @@ namespace Code\Shared\Bus\Command\Infrastructure;
 use Code\Shared\Bus\Command\Domain\Command;
 use Code\Shared\Bus\Command\Domain\CommandBus;
 use Code\Shared\Bus\Command\Domain\Exceptions\CommandNotRegisteredError;
+use Code\Shared\Bus\Shared\Infrastructure\CallableFirstParameterExtractor;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
-use Code\Shared\Bus\Shared\Infrastructure\CallableFirstParameterExtractor;use Symfony\Component\Messenger\MessageBus;
+use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 use Throwable;
 
