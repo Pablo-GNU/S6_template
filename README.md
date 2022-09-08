@@ -7,6 +7,8 @@
 On the project root execute this commands:
 
 ````
+cp docker-compose.override.yml.dist docker-compose.override.yml
+
 make docker-build
 
 make docker-start

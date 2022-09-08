@@ -19,7 +19,7 @@ use Throwable;
 
 final class InMemorySymfonyQueryBus implements QueryBus
 {
-    private MessageBus $bus;
+    private readonly MessageBus $bus;
 
     public function __construct(iterable $queryHandlers)
     {
@@ -42,7 +42,7 @@ final class InMemorySymfonyQueryBus implements QueryBus
             $stamp = $this->bus->dispatch($query)->last(HandledStamp::class);
 
             return $stamp->getResult();
-        } catch (NoHandlerForMessageException $e) {
+        } catch (NoHandlerForMessageException) {
             throw new QueryNotRegisteredError($query);
         } catch (HandlerFailedException $error) {
             while ($error instanceof HandlerFailedException) {

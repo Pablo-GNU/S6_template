@@ -6,11 +6,8 @@ namespace Code\Shared\ValueObject\Domain;
 
 abstract class StringValueObject
 {
-    private string $value;
-
-    public function __construct(string $value)
+    public function __construct(private readonly string $value)
     {
-        $this->value = $value;
     }
 
     public function value(): string

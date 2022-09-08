@@ -16,7 +16,7 @@ use Throwable;
 
 final class InMemorySymfonyCommandBus implements CommandBus
 {
-    private MessageBus $bus;
+    private readonly MessageBus $bus;
 
     public function __construct(iterable $commandHandlers)
     {
@@ -36,7 +36,7 @@ final class InMemorySymfonyCommandBus implements CommandBus
     {
         try {
             $this->bus->dispatch($command);
-        } catch (NoHandlerForMessageException $e) {
+        } catch (NoHandlerForMessageException) {
             throw new CommandNotRegisteredError($command);
         } catch (HandlerFailedException $error) {
             while ($error instanceof HandlerFailedException) {

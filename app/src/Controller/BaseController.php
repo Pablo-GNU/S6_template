@@ -13,13 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 abstract class BaseController extends AbstractController
 {
-    private CommandBus $commandBus;
-    private QueryBus $queryBus;
-
-    public function __construct(CommandBus $commandBus, QueryBus $queryBus)
+    public function __construct(private readonly CommandBus $commandBus, private readonly QueryBus $queryBus)
     {
-        $this->commandBus = $commandBus;
-        $this->queryBus = $queryBus;
     }
 
     public function dispatch(Command $command): void

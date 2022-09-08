@@ -8,7 +8,7 @@ use DomainException;
 
 abstract class IntPositiveValueObject
 {
-    private int $id;
+    private readonly int $id;
 
     public function __construct(int $id)
     {
