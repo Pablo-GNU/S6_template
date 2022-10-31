@@ -2,20 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Code\Shared\Persistence\Infrastructure;
+namespace Code\Shared\Persistence\Infrastructure\DBAL;
 
 use Code\Shared\Persistence\Domain\RepositoryInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Query\QueryBuilder;
 
-final class DBALRepositoryConnection extends Connection implements RepositoryInterface
+class DBALRepositoryConnection implements RepositoryInterface
 {
+    public function __construct(protected readonly Connection $conn)
+    {
+    }
+
+    public function queryBuilder(): QueryBuilder
+    {
+        return $this->conn->createQueryBuilder();
+    }
+
     /**
      * @throws Exception
      */
     public function startTransaction(): void
     {
-        $this->beginTransaction();
+        $this->conn->beginTransaction();
     }
 
     /**
@@ -23,7 +33,7 @@ final class DBALRepositoryConnection extends Connection implements RepositoryInt
      */
     public function commitTransaction(): void
     {
-        $this->commit();
+        $this->conn->commit();
     }
 
     /**
@@ -31,6 +41,6 @@ final class DBALRepositoryConnection extends Connection implements RepositoryInt
      */
     public function rollBackTransaction(): void
     {
-        $this->rollBack();
+        $this->conn->rollBack();
     }
 }

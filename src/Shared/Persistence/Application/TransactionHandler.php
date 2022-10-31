@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Code\Shared\Persistence\Application;
 
 use Code\Shared\Bus\Query\Domain\Response;
-use Code\Shared\Persistence\Domain\RepositoryInterface;
+use Code\Shared\Persistence\Domain\TransactionalRepositoryInterface;
 use Throwable;
 
 final class TransactionHandler
 {
-    public function __construct(private readonly RepositoryInterface $repository)
+    public function __construct(private readonly TransactionalRepositoryInterface $repository)
     {
     }
 

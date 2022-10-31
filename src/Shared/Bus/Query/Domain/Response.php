@@ -6,5 +6,4 @@ namespace Code\Shared\Bus\Query\Domain;
 
 interface Response
 {
-    public function toArray(): array;
 }

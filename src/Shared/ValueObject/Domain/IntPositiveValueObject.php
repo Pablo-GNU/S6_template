@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Code\Shared\ValueObject\Domain;
 
-use DomainException;
+use Code\Shared\Exceptions\Domain\DomainErrorException;
 
 abstract class IntPositiveValueObject
 {
@@ -13,7 +13,7 @@ abstract class IntPositiveValueObject
     public function __construct(int $id)
     {
         if ($id <= 0) {
-            throw new DomainException('The ID must be greater than 0');
+            throw new DomainErrorException('The ID must be greater than 0');
         }
 
         $this->id = $id;
