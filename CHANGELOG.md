@@ -4,6 +4,15 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [1.5.1](https://github.com/Pablo-GNU/S6_template/compare/v1.5.0...v1.5.1) (2022-10-31)
+
+### Bug Fixes
+
+* Fix tests ([cae3f2](https://github.com/Pablo-GNU/S6_template/commit/cae3f2854183ba2fb550c894981ebaf98ee16986))
+
+
+---
+
 ## [1.5.0](https://github.com/Pablo-GNU/S6_template/compare/v1.4.0...v1.5.0) (2022-09-08)
 
 ### Features
