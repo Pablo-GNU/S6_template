@@ -1,8 +1,13 @@
 <?php
 
 $finder = (new PhpCsFixer\Finder())
+    ->exclude('/app/var')
+    ->exclude('/vendor')
+    ->exclude('/node_modules')
+    ->exclude('/*.php')
+    ->name('*.php')
     ->in(__DIR__)
-    ->exclude('var')
+
 ;
 
 return (new PhpCsFixer\Config())
