@@ -1,16 +1,15 @@
 doctrine:
-    dbal:
-        default_connection: base
-        connections:
-            base:
-                url: '%env(resolve:DATABASE_URL)%'
-                wrapper_class: Code\Shared\Persistence\Infrastructure\DBALRepositoryConnection
-                charset: utf8mb4
-                default_table_options:
-                    charset: utf8mb4
-                    collation: utf8mb4_unicode_ci
-                mapping_types:
-                    enum: string
+  dbal:
+    default_connection: base
+    connections:
+      base:
+        url: '%env(resolve:DATABASE_URL)%'
+        charset: utf8mb4
+        default_table_options:
+          charset: utf8mb4
+          collation: utf8mb4_unicode_ci
+        mapping_types:
+          enum: string
 
 services:
-    Code\Shared\Persistence\Infrastructure\DBALRepositoryConnection: '@doctrine.dbal.base_connection'
+  Code\Shared\Persistence\Infrastructure\DBAL\DBALRepositoryConnection: '@doctrine.dbal.base_connection'

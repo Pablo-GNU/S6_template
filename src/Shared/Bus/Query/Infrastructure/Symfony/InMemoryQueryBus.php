@@ -2,29 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Code\Shared\Bus\Command\Infrastructure;
+namespace Code\Shared\Bus\Query\Infrastructure\Symfony;
 
-use Code\Shared\Bus\Command\Domain\Command;
-use Code\Shared\Bus\Command\Domain\CommandBus;
-use Code\Shared\Bus\Command\Domain\Exceptions\CommandNotRegisteredError;
+use Code\Shared\Bus\Query\Domain\Exceptions\QueryNotRegisteredError;
+use Code\Shared\Bus\Query\Domain\Query;
+use Code\Shared\Bus\Query\Domain\QueryBus;
+use Code\Shared\Bus\Query\Domain\Response;
 use Code\Shared\Bus\Shared\Infrastructure\CallableFirstParameterExtractor;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Throwable;
 
-final class InMemorySymfonyCommandBus implements CommandBus
+final class InMemoryQueryBus implements QueryBus
 {
     private readonly MessageBus $bus;
 
-    public function __construct(iterable $commandHandlers)
+    public function __construct(iterable $queryHandlers)
     {
         $this->bus = new MessageBus(
             [
                 new HandleMessageMiddleware(
-                    new HandlersLocator(CallableFirstParameterExtractor::forCallables($commandHandlers))
+                    new HandlersLocator(CallableFirstParameterExtractor::forCallables($queryHandlers))
                 ),
             ]
         );
@@ -33,12 +35,15 @@ final class InMemorySymfonyCommandBus implements CommandBus
     /**
      * @throws Throwable
      */
-    public function dispatch(Command $command): void
+    public function ask(Query $query): ?Response
     {
         try {
-            $this->bus->dispatch($command);
+            /** @var HandledStamp $stamp */
+            $stamp = $this->bus->dispatch($query)->last(HandledStamp::class);
+
+            return $stamp->getResult();
         } catch (NoHandlerForMessageException) {
-            throw new CommandNotRegisteredError($command);
+            throw new QueryNotRegisteredError($query);
         } catch (HandlerFailedException $error) {
             while ($error instanceof HandlerFailedException) {
                 /** @var Throwable $error */

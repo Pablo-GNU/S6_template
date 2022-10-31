@@ -1,3 +1,5 @@
 test:
-  path: /test
-  controller: Code\App\Controller\TestController::__invoke
+  resource: 'routes/example_bc'
+  type: directory
+  defaults:
+      _area: example_bc

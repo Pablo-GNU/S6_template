@@ -8,6 +8,10 @@
     <arg name="extensions" value="php"/>
     <ini name="memory_limit" value="-1" />
 
+    <exclude-pattern>/app/var/*</exclude-pattern>
+    <exclude-pattern>/vendor/*</exclude-pattern>
+    <exclude-pattern>/node_modules/*</exclude-pattern>
+
     <rule ref="PSR12">
         <exclude name="Generic.Metrics.CyclomaticComplexity" />
     </rule>
@@ -192,7 +196,9 @@
         </properties>
     </rule>
 
-	<rule ref="Generic.Files.LineEndings"/>
+    <rule ref="Generic.Files.LineEndings">
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
+    </rule>
 	<rule ref="Generic.Files.LineLength">
 		<properties>
 			<property name="lineLimit" value="300"/>

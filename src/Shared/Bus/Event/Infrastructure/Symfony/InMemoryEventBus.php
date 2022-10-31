@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Code\Shared\Bus\Event\Infrastructure;
+namespace Code\Shared\Bus\Event\Infrastructure\Symfony;
 
 use Code\Shared\Bus\Event\Domain\DomainEvent;
 use Code\Shared\Bus\Event\Domain\EventBus;
@@ -12,7 +12,7 @@ use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 
-final class InMemorySymfonyEventBus implements EventBus
+final class InMemoryEventBus implements EventBus
 {
     private readonly MessageBus $bus;
 
